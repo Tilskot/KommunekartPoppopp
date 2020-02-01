@@ -61,7 +61,12 @@ shinyServer(function(input, output) {
       hc_mapNavigation(enabled=TRUE) %>%
       hc_tooltip(shared = FALSE,
                  formatter = JS("function () { return '<b>' + this.point.kommune + '</b><br/>' + 'Totalt tildelt: ' + Highcharts.numberFormat(this.point.Sum,0) + ' kroner'+ '<br/>' + 'Største mottakar: ' +this.point.størst;}")) %>%
-      hc_chart(showLoading=TRUE)
+      hc_chart(showLoading=TRUE) %>%
+      hc_credits(
+        enabled = TRUE,
+        text = "Basert på data frå Kartverket",
+        href="https://kartkatalog.geonorge.no/metadata/n5000-kartdata/c777d53d-8916-4d9d-bae4-6d5140e0c569"
+      )
   )
   
   output$tabell<-renderDataTable({
